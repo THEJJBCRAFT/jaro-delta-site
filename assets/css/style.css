@@ -1,0 +1,85 @@
+:root { --bg:#0b0b12; --fg:#e9eef5; --muted:#9aa3b2; --accent:#7c3aed; --accent2:#00ff9c; }
+*{box-sizing:border-box}
+body {margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji"; background: radial-gradient(1200px 600px at 20% -20%, rgba(124,58,237,.25), transparent), radial-gradient(900px 500px at 120% 20%, rgba(0,255,156,.18), transparent), #0b0b12; color:var(--fg); line-height:1.6}
+a {color:inherit; text-decoration:none}
+.container{width:min(1100px, 92%); margin:0 auto}
+nav{position:sticky; top:0; backdrop-filter:saturate(140%) blur(12px); background:rgba(11,11,18,.55); border-bottom:1px solid rgba(255,255,255,.08); z-index:10}
+nav .inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+.logo{font-weight:800; letter-spacing:.4px; display:flex; align-items:center; gap:.6rem}
+.badge{display:inline-flex; align-items:center; gap:.35rem; padding:.25rem .6rem; border:1px solid rgba(255,255,255,.12); border-radius:999px; font-size:.8rem; color:var(--muted)}
+.btn{display:inline-flex; align-items:center; gap:.6rem; padding:.8rem 1.1rem; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(135deg, rgba(124,58,237,.15), rgba(0,255,156,.12)); transition:transform .2s ease, box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgba(124,58,237,.25)}
+.hero{padding:72px 0 42px}
+.hero h1{font-size:clamp(2rem, 5vw + .5rem, 4rem); line-height:1.05; margin:0 0 14px}
+.grad{background:linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.hero p{color:var(--muted); font-size:1.1rem; max-width:60ch}
+.hero .cta{margin-top:20px; display:flex; gap:.8rem; flex-wrap:wrap}
+.section{padding:42px 0 22px}
+.section h2{font-size:1.8rem; margin:0 0 14px}
+.grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+.card{position:relative; overflow:hidden; border-radius:18px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.02)}
+.thumb{aspect-ratio:16/9; width:100%; display:block; object-fit:cover}
+.card .meta{padding:12px 14px}
+.card .meta h3{margin:0; font-size:1rem}
+.card .meta p{margin:6px 0 0; font-size:.9rem; color:var(--muted)}
+.card:hover{outline:1px solid rgba(124,58,237,.35)}
+@media (max-width:900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:640px){ .grid{grid-template-columns:1fr} .hero{padding:56px 0 24px} }
+
+.kicker{display:flex; gap:.6rem; align-items:center; color:var(--muted); font-size:.9rem}
+.kicker svg{opacity:.6}
+.section .copy{color:var(--muted); max-width:70ch}
+.footer{padding:36px 0 64px; color:var(--muted); border-top:1px solid rgba(255,255,255,.08); margin-top:40px}
+.socials{display:flex; gap:10px}
+.iconbtn{display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03)}
+.iconbtn:hover{border-color:rgba(124,58,237,.5)}
+.tag{font-size:.75rem; padding:.25rem .55rem; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:var(--muted)}
+.tags{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:10px}
+
+.modal{position:fixed; inset:0; display:none; background:rgba(0,0,0,.7); align-items:center; justify-content:center; padding:20px; z-index:20}
+.modal.open{display:flex}
+.modal .player{width:min(100%, 960px); aspect-ratio:16/9; background:#000; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.12)}
+.close{position:absolute; top:20px; right:20px; border:none; background:rgba(255,255,255,.08); color:white; padding:.5rem .7rem; border-radius:10px; cursor:pointer}
+
+/* === Horizontal Carousel for Projekte & Serien === */
+.carousel{position:relative}
+.hscroll{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:6px 48px; scrollbar-width:thin}
+.hscroll::-webkit-scrollbar{height:10px}
+.hscroll::-webkit-scrollbar-track{background:rgba(255,255,255,.06); border-radius:999px}
+.hscroll::-webkit-scrollbar-thumb{background:linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:999px}
+.hscroll .card{min-width: clamp(240px, 38vw, 320px); scroll-snap-align:start; flex:0 0 auto}
+
+.carousel-btn{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:72px; border:none; border-radius:16px; cursor:pointer; background:rgba(11,11,18,.6); outline:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; backdrop-filter: blur(6px); transition:transform .18s ease, background .18s ease, opacity .18s ease; color:#e9eef5}
+.carousel-btn:hover{transform:translateY(-50%) scale(1.05); background:rgba(11,11,18,.75)}
+.carousel-btn.left{left:4px}
+.carousel-btn.right{right:4px}
+.carousel-btn[disabled]{opacity:.35; cursor:not-allowed}
+.arrow{font-size:28px; line-height:1; display:inline-block; animation:arrowPulse 1.4s infinite ease-in-out}
+.carousel-btn.right .arrow{animation-name:arrowPulseRight}
+@keyframes arrowPulse{0%,100%{transform:translateX(-2px)}50%{transform:translateX(1px)}}
+@keyframes arrowPulseRight{0%,100%{transform:translateX(2px)}50%{transform:translateX(-1px)}}
+
+/* Cards inside carousel reuse .card styles; make thumbs a bit taller on mobile */
+.hscroll .thumb{aspect-ratio:16/9}
+@media (max-width:640px){
+  .hscroll{padding:6px 40px}
+  .carousel-btn{height:60px}
+}
+
+
+/* === CTA Rail under carousel === */
+.cta-rail{display:flex; gap:14px; margin-top:18px; justify-content:flex-end; align-items:center; flex-wrap:wrap}
+.mega-btn{--glow: rgba(124,58,237,.6); --glow2: rgba(0,255,156,.5); position:relative; display:inline-flex; text-decoration:none; border-radius:16px; padding:0; overflow:hidden; isolation:isolate; box-shadow:0 0 0 rgba(0,0,0,0); transition:transform .18s ease, box-shadow .18s ease}
+.mega-btn .btn-inner{position:relative; z-index:1; display:inline-flex; align-items:center; justify-content:center; gap:.6rem; padding:1rem 1.2rem; border:1px solid rgba(255,255,255,.12); border-radius:16px; backdrop-filter:blur(8px); background:rgba(255,255,255,.03)}
+.mega-btn .label{font-weight:700; letter-spacing:.2px}
+.mega-btn::before{content:""; position:absolute; inset:-2px; border-radius:18px; background:conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent), var(--accent2)); filter:blur(14px); opacity:.55; animation:spinGlow 3s linear infinite}
+.mega-btn::after{content:""; position:absolute; inset:0; border-radius:16px; background:linear-gradient(135deg, rgba(124,58,237,.18), rgba(0,255,156,.12)); mix-blend:screen; opacity:.6}
+.mega-btn:hover{transform:translateY(-2px) scale(1.02); box-shadow:0 18px 50px rgba(124,58,237,.25)}
+.mega-btn .spark{position:absolute; left:-30%; top:-200%; width:60%; height:500%; background:radial-gradient(40% 40% at 50% 50%, rgba(255,255,255,.7), transparent 60%); transform:rotate(25deg); animation:shine 2.4s ease-in-out infinite}
+.mega-btn.ext{--accent: #00ff9c; --accent2: #7c3aed}
+.mega-btn.read{--accent: #7c3aed; --accent2: #00ff9c}
+
+@keyframes spinGlow{to{transform:rotate(360deg)}}
+@keyframes shine{0%{left:-30%} 50%{left:120%} 100%{left:-30%}}
+
+@media (max-width:640px){ .cta-rail{justify-content:center} }

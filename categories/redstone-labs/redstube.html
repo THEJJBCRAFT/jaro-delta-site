@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redstube – Deine Karriere starten</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body { margin: 0; font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }
+    header {
+      background: linear-gradient(to bottom, #ff0000, #0a0a0a 90%);
+      padding: 20px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    header .logo { font-size: 1.6rem; font-weight: 800; }
+    header .profile { cursor: pointer; }
+
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
+    .video-card {
+      background: #1a1a1a; border-radius: 12px; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .video-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(255,0,0,0.4); }
+    .video-thumb { height: 160px; background: #333; display:flex; align-items:center; justify-content:center; font-size:2rem; }
+    .video-info { padding: 14px; }
+    .video-info h3 { margin:0 0 6px; font-size:1rem; }
+    .video-info p { margin:0; font-size:0.85rem; color:#aaa; }
+
+    /* Popups */
+    .popup { position: fixed; inset: 0; background: rgba(0,0,0,0.75); display: none; align-items: center; justify-content: center; z-index: 2000; }
+    .popup.active { display: flex; }
+    .popup-content { background: #1a1a1a; padding: 30px; border-radius: 12px; width: 100%; max-width: 380px; }
+    .popup-content h2 { margin: 0 0 20px; text-align: center; color: #ff4444; }
+    .popup-content input, .popup-content textarea { width: 100%; padding: 12px; margin-bottom: 14px; border: none; border-radius: 6px; background: #2a2a2a; color: #fff; }
+    .popup-content button { width: 100%; padding: 12px; border: none; border-radius: 6px; background: #ff0000; color: #fff; font-weight: 700; cursor: pointer; }
+    .close, .switch { text-align: center; margin-top: 10px; cursor: pointer; font-size: 0.9rem; }
+    .switch { color: #ff4444; }
+    .error { color: #ff6666; font-size: 0.85rem; margin-bottom: 10px; }
+    .success { color: #4caf50; font-size: 0.9rem; margin-bottom: 10px; }
+
+    /* Dashboard */
+    #dashboard { display: none; padding: 20px; }
+    #dashboard h2 { margin-top: 0; color: #ff4444; }
+    #dashboard button { margin-top: 10px; padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; background: #ff0000; color: #fff; font-weight: 600; }
+    .channel-info { background: #1a1a1a; padding: 20px; border-radius: 12px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">🔴 Redstube</div>
+    <div class="profile" id="profileBtn" onclick="openPopup('login')">👤 Anmelden</div>
+  </header>
+
+  <!-- Startseite mit Feed -->
+  <main id="homePage">
+    <h2 style="padding:20px;">🎬 Neueste Videos</h2>
+    <div class="video-grid" id="feedGrid"></div>
+  </main>
+
+  <!-- Dashboard -->
+  <section id="dashboard">
+    <h2 id="welcomeMsg"></h2>
+    <button onclick="logout()">Logout</button>
+    <div id="channelArea"></div>
+  </section>
+
+  <!-- Login Popup -->
+  <div class="popup" id="loginPopup">
+    <div class="popup-content">
+      <h2>Anmelden</h2>
+      <div id="loginMsg"></div>
+      <input type="text" id="loginUser" placeholder="Benutzername">
+      <input type="password" id="loginPass" placeholder="Passwort">
+      <button onclick="login()">Login</button>
+      <div class="close" onclick="closePopup('login')">Abbrechen</div>
+      <div class="switch" onclick="switchPopup('register')">Noch kein Konto? Registrieren</div>
+    </div>
+  </div>
+
+  <!-- Register Popup -->
+  <div class="popup" id="registerPopup">
+    <div class="popup-content">
+      <h2>Konto erstellen</h2>
+      <div id="registerMsg"></div>
+      <input type="text" id="regUser" placeholder="Benutzername">
+      <input type="email" id="regMail" placeholder="E-Mail">
+      <input type="password" id="regPass" placeholder="Passwort">
+      <button onclick="register()">Registrieren</button>
+      <div class="close" onclick="closePopup('register')">Abbrechen</div>
+      <div class="switch" onclick="switchPopup('login')">Schon ein Konto? Anmelden</div>
+    </div>
+  </div>
+
+  <!-- Kanal erstellen Popup -->
+  <div class="popup" id="channelPopup">
+    <div class="popup-content">
+      <h2>Kanal erstellen</h2>
+      <div id="channelMsg"></div>
+      <input type="text" id="channelName" placeholder="Kanalname">
+      <textarea id="channelDesc" placeholder="Beschreibung"></textarea>
+      <button onclick="createChannel()">Erstellen</button>
+      <div class="close" onclick="closePopup('channel')">Abbrechen</div>
+    </div>
+  </div>
+
+  <!-- Video hochladen Popup -->
+  <div class="popup" id="uploadPopup">
+    <div class="popup-content">
+      <h2>Video hochladen</h2>
+      <div id="uploadMsg"></div>
+      <input type="text" id="videoTitle" placeholder="Videotitel">
+      <textarea id="videoDesc" placeholder="Beschreibung"></textarea>
+      <button onclick="uploadVideo()">Hochladen</button>
+      <div class="close" onclick="closePopup('upload')">Abbrechen</div>
+    </div>
+  </div>
+
+  <script>
+    function openPopup(type) { document.getElementById(type + 'Popup').classList.add('active'); }
+    function closePopup(type) { document.getElementById(type + 'Popup').classList.remove('active'); }
+    function switchPopup(target) {
+      document.querySelectorAll('.popup').forEach(p => p.classList.remove('active'));
+      document.getElementById(target + 'Popup').classList.add('active');
+    }
+
+    function getUsers() { return JSON.parse(localStorage.getItem('users') || '[]'); }
+    function saveUsers(users) { localStorage.setItem('users', JSON.stringify(users)); }
+    function getCurrentUser() { return JSON.parse(localStorage.getItem('currentUser')); }
+    function setCurrentUser(user) { localStorage.setItem('currentUser', JSON.stringify(user)); }
+
+    function logout() {
+      localStorage.removeItem('currentUser');
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('homePage').style.display = 'block';
+      document.getElementById('profileBtn').innerText = "👤 Anmelden";
+      renderFeed();
+    }
+
+    function register() {
+      const user = document.getElementById('regUser').value.trim();
+      const mail = document.getElementById('regMail').value.trim();
+      const pass = document.getElementById('regPass').value;
+      const msg = document.getElementById('registerMsg');
+      let users = getUsers();
+
+      if (!user || !mail || !pass) { msg.innerHTML = "<div class='error'>Bitte alle Felder ausfüllen</div>"; return; }
+      if (users.find(u => u.user === user)) { msg.innerHTML = "<div class='error'>Benutzername bereits vergeben</div>"; return; }
+
+      users.push({ user, mail, pass, channel: null });
+      saveUsers(users);
+      msg.innerHTML = "<div class='success'>Konto erstellt! Du kannst dich jetzt anmelden.</div>";
+    }
+
+    function login() {
+      const user = document.getElementById('loginUser').value.trim();
+      const pass = document.getElementById('loginPass').value;
+      const msg = document.getElementById('loginMsg');
+      let users = getUsers();
+      let found = users.find(u => u.user === user && u.pass === pass);
+
+      if (found) {
+        setCurrentUser(found);
+        closePopup('login');
+        showDashboard();
+      } else {
+        msg.innerHTML = "<div class='error'>Falscher Benutzername oder Passwort</div>";
+      }
+    }
+
+    function showDashboard() {
+      let user = getCurrentUser();
+      if (!user) return;
+
+      document.getElementById('homePage').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('profileBtn').innerText = "👤 " + user.user;
+      document.getElementById('welcomeMsg').innerText = "Willkommen, " + user.user + "!";
+
+      const area = document.getElementById('channelArea');
+      if (user.channel) {
+        let videosHTML = "";
+        if (user.channel.videos && user.channel.videos.length > 0) {
+          videosHTML = `<div class="video-grid">` +
+            user.channel.videos.map(v => `
+              <div class="video-card">
+                <div class="video-thumb">▶</div>
+                <div class="video-info">
+                  <h3>${v.title}</h3>
+                  <p>${v.desc}</p>
+                </div>
+              </div>`).join("") +
+            `</div>`;
+        } else {
+          videosHTML = "<p>Noch keine Videos hochgeladen.</p>";
+        }
+
+        area.innerHTML = `
+          <div class="channel-info">
+            <h3>Kanal: ${user.channel.name}</h3>
+            <p>${user.channel.desc}</p>
+            <button onclick="openPopup('upload')">Video hochladen</button>
+            ${videosHTML}
+          </div>
+        `;
+      } else {
+        area.innerHTML = `<button onclick="openPopup('channel')">Kanal erstellen</button>`;
+      }
+    }
+
+    function createChannel() {
+      let user = getCurrentUser();
+      if (!user) return;
+
+      const name = document.getElementById('channelName').value.trim();
+      const desc = document.getElementById('channelDesc').value.trim();
+      const msg = document.getElementById('channelMsg');
+
+      if (!name) { msg.innerHTML = "<div class='error'>Bitte Kanalname eingeben</div>"; return; }
+
+      user.channel = { name, desc, videos: [] };
+
+      let users = getUsers();
+      let index = users.findIndex(u => u.user === user.user);
+      users[index] = user;
+      saveUsers(users);
+      setCurrentUser(user);
+
+      closePopup('channel');
+      showDashboard();
+      renderFeed();
+    }
+
+    function uploadVideo() {
+      let user = getCurrentUser();
+      if (!user || !user.channel) return;
+
+      const title = document.getElementById('videoTitle').value.trim();
+      const desc = document.getElementById('videoDesc').value.trim();
+      const msg = document.getElementById('uploadMsg');
+
+      if (!title) { msg.innerHTML = "<div class='error'>Bitte Titel eingeben</div>"; return; }
+
+      if (!user.channel.videos) user.channel.videos = [];
+      user.channel.videos.push({ title, desc });
+
+      let users = getUsers();
+      let index = users.findIndex(u => u.user === user.user);
+      users[index] = user;
+      saveUsers(users);
+      setCurrentUser(user);
+
+      closePopup('upload');
+      showDashboard();
+      renderFeed();
+    }
+
+    function renderFeed() {
+      const grid = document.getElementById('feedGrid');
+      let users = getUsers();
+      let allVideos = [];
+
+      users.forEach(u => {
+        if (u.channel && u.channel.videos) {
+          u.channel.videos.forEach(v => {
+            allVideos.push({ ...v, channel: u.channel.name, author: u.user });
+          });
+        }
+      });
+
+      if (allVideos.length === 0) {
+        grid.innerHTML = "<p>Keine Videos vorhanden. Sei der Erste und lade etwas hoch!</p>";
+      } else {
+        grid.innerHTML = allVideos.map(v => `
+          <div class="video-card">
+            <div class="video-thumb">▶</div>
+            <div class="video-info">
+              <h3>${v.title}</h3>
+              <p>${v.channel} • ${v.author}</p>
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+
+    window.onload = () => { 
+      renderFeed();
+      if (getCurrentUser()) showDashboard(); 
+    };
+  </script>
+
+</body>
+</html>

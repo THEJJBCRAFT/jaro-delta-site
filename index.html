@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JARO • DELTA – Offizielle Website</title>
+  <meta name="description" content="Jaro & Delta – Gaming, Redstone, epische Stories & Musik. Jetzt auf YouTube folgen!" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/icons/favicon.png" type="image/png" />
+  <!-- SEO / Social -->
+  <link rel="canonical" href="https://www.youtube.com/@jjb-djp" />
+  <meta property="og:title" content="JARO • DELTA – Offizielle Website" />
+  <meta property="og:description" content="Gaming, Redstone, epische Stories & Musik. Jetzt auf YouTube folgen – mit Jaro & Delta." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.youtube.com/@jjb-djp" />
+  <meta name="theme-color" content="#7c3aed" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Jaro • Delta",
+    "url":"https://www.youtube.com/@jjb-djp",
+    "sameAs":["https://www.youtube.com/@jjb-djp"]
+  }
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="container inner">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12a9 9 0 1 1 18 0" stroke="white" opacity=".3"/><path d="M3 12a9 9 0 0 0 9 9" stroke="white" opacity=".5"/></svg>
+        <span>JARO • DELTA</span>
+        <span class="badge">Offizielle Seite</span>
+      </div>
+      <div>
+        <a class="btn" href="https://www.youtube.com/@jjb-djp" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3.1 3.1 0 0 0-2.2-2.2C19 3.5 12 3.5 12 3.5s-7 0-9.3.5A3.1 3.1 0 0 0 .5 6.2 32.8 32.8 0 0 0 0 12a32.8 32.8 0 0 0 .5 5.8 3.1 3.1 0 0 0 2.2 2.2C5 20.5 12 20.5 12 20.5s7 0 9.3-.5a3.1 3.1 0 0 0 2.2-2.2c.4-1.9.5-3.8.5-5.8 0-2-.1-3.9-.5-5.8ZM9.6 15.5v-7L15.8 12 9.6 15.5Z"/></svg>
+          Abonnieren
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <p class="kicker">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v18M3 12h18" stroke="currentColor"/></svg>
+      Gaming • Redstone • Story
+    </p>
+    <h1><span class="grad">Jaro & Delta</span> – epische Projekte, Battles & Stories</h1>
+    <p>Willkommen auf der offiziellen Website von <strong>Jaro</strong> und <strong>Delta</strong>. Hier findest du gebündelt alles zum YouTube‑Kanal, unseren Serien wie <em>Das Erwachen von Chi</em>, Redstone‑Projekte, Musik und mehr.</p>
+    <div class="cta">
+      <a class="btn" href="#videos" aria-label="Zu den neuesten Videos">Neueste Videos</a>
+      <a class="btn" href="#projekte" aria-label="Zu den Projekten">Projekte</a>
+    </div>
+  </header>
+
+  <section id="videos" class="section container">
+    <h2>Neueste Videos</h2>
+    <p class="copy">Trage unten deine Video‑IDs in <code>assets/js/app.js</code> ein – die Thumbnails & der Player bauen sich automatisch.</p>
+    <div id="videoGrid" class="grid" aria-live="polite"></div>
+    <div class="cta-rail">
+      <a class="mega-btn read" href="#about" aria-label="Mehr über die Projekte lesen">
+        <span class="btn-inner">
+          <span class="spark"></span>
+          <span class="label">Durchlesen</span>
+        </span>
+      </a>
+      <a class="mega-btn ext" href="#" id="extLink" target="_blank" rel="noopener" aria-label="Zur weiteren Website">
+        <span class="btn-inner">
+          <span class="spark"></span>
+          <span class="label">Zur weiteren Website</span>
+        </span>
+      </a>
+    </div>
+
+  </section>
+
+  <section id="projekte" class="section container">
+    <h2>Projekte & Serien</h2>
+    <div class="carousel" role="region" aria-label="Projekte-Karussell">
+      <button class="carousel-btn left" aria-label="Nach links scrollen" data-dir="-1">
+        <span class="arrow">‹</span>
+      </button>
+      <div class="hscroll" id="catTrack" tabindex="0" role="listbox" aria-label="Kategorien">
+        <!-- Kategorien werden per JS gerendert -->
+      </div>
+      <button class="carousel-btn right" aria-label="Nach rechts scrollen" data-dir="1">
+        <span class="arrow">›</span>
+      </button>
+    </div>
+    <div class="cta-rail">
+      <a class="mega-btn read" href="#about" aria-label="Mehr über die Projekte lesen">
+        <span class="btn-inner">
+          <span class="spark"></span>
+          <span class="label">Durchlesen</span>
+        </span>
+      </a>
+      <a class="mega-btn ext" href="#" id="extLink" target="_blank" rel="noopener" aria-label="Zur weiteren Website">
+        <span class="btn-inner">
+          <span class="spark"></span>
+          <span class="label">Zur weiteren Website</span>
+        </span>
+      </a>
+    </div>
+
+  </section>
+
+  <section id="about" class="section container">
+    <h2>Über den Kanal</h2>
+    <p class="copy">Wir lieben starken Style, mystische Atmosphäre und heftige Kämpfe – on‑screen und in unseren Stories. Auf YouTube findest du PvP‑Clips, Redstone‑Experimente, Animations‑Tests und Hörspiel‑Ausschnitte. Folge uns, um keine Release‑Welle zu verpassen.</p>
+  </section>
+
+  <footer class="footer">
+    <div class="container" style="display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between">
+      <div>
+        <div style="font-weight:700">JARO • DELTA</div>
+        <div style="margin-top:6px">© <span id="year"></span> Alle Rechte vorbehalten.</div>
+      </div>
+      <div class="socials">
+        <a class="iconbtn" href="https://www.youtube.com/@jjb-djp" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3.1 3.1 0 0 0-2.2-2.2C19 3.5 12 3.5 12 3.5s-7 0-9.3.5A3.1 3.1 0 0 0 .5 6.2 32.8 32.8 0 0 0 0 12a32.8 32.8 0 0 0 .5 5.8 3.1 3.1 0 0 0 2.2 2.2C5 20.5 12 20.5 12 20.5s7 0 9.3-.5a3.1 3.1 0 0 0 2.2-2.2c.4-1.9.5-3.8.5-5.8 0-2-.1-3.9-.5-5.8ZM9.6 15.5v-7L15.8 12 9.6 15.5Z"/></svg>
+        </a>
+        <a class="iconbtn" href="mailto:contact@example.com" aria-label="E‑Mail">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5h18v14H3z" stroke="currentColor"/><path d="m3 6 9 7 9-7" stroke="currentColor"/></svg>
+        </a>
+        <a class="iconbtn" href="#" aria-label="Discord (später hinzufügen)" title="Discord – bald">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7c1.2-.4 2.5-.7 5-.7 2.5 0 3.8.3 5 .7 1 .4 2 2.6 2 4.2 0 3.7-3 6.7-7 6.7s-7-3-7-6.7c0-1.6 1-3.8 2-4.2Z" stroke="currentColor"/><circle cx="9" cy="12" r="1.2" fill="currentColor"/><circle cx="15" cy="12" r="1.2" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Videoplayer">
+    <button class="close" aria-label="Schließen" onclick="closeModal()">Schließen ✕</button>
+    <div class="player">
+      <iframe id="playerFrame" width="100%" height="100%" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
