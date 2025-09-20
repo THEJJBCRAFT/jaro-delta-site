@@ -1,4 +1,4 @@
-ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -31,6 +31,9 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
     .feature .media {
       position: relative; overflow: hidden; border-radius: 10px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      background: #000;
+      /* WICHTIG: feste Höhe per Seitenverhältnis für Video/Img */
+      aspect-ratio: 16 / 9;
     }
     .feature .media img, .feature .media video {
       width: 100%; height: 100%; object-fit: cover; display: block;
@@ -39,9 +42,7 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
     .feature p { margin: 0 0 8px; line-height: 1.5; font-size: 0.95rem; opacity: .95; }
     .bullets { display: grid; gap: 4px; margin-top: 4px; }
     .bullets li { list-style: none; position: relative; padding-left: 18px; font-size: 0.9rem; }
-    .bullets li::before {
-      content: "◆"; position: absolute; left: 0; top: 0.1rem; font-size: .75rem; opacity: .8;
-    }
+    .bullets li::before { content: "◆"; position: absolute; left: 0; top: 0.1rem; font-size: .75rem; opacity: .8; }
 
     /* ===== Schwarzer Game-Section (größer) ===== */
     .game-cta {
@@ -85,7 +86,7 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
       transform: translateX(-120%); transition: transform .4s ease;
     }
     .game-btn:hover::before { transform: translateX(120%); }
-    .game-btn .sub { display:block; font-size:0.95rem; opacity:.9; font-weight:600; margin-top:6px; }
+    .game-btn .sub { display:block; font-size: 0.95rem; opacity:.9; font-weight:600; margin-top:6px; }
 
     /* Extra Animation für Redstube Button */
     .redstube-btn {
@@ -94,14 +95,8 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
       box-shadow: 0 0 25px rgba(255,0,0,0.7), inset 0 1px 0 rgba(255,255,255,.15);
     }
     @keyframes pulseRed {
-      0%, 100% {
-        box-shadow: 0 0 25px rgba(255,0,0,0.7), inset 0 1px 0 rgba(255,255,255,.15);
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 50px rgba(255,0,0,1), inset 0 1px 0 rgba(255,255,255,.25);
-        transform: scale(1.05);
-      }
+      0%, 100% { box-shadow: 0 0 25px rgba(255,0,0,0.7), inset 0 1px 0 rgba(255,255,255,.15); transform: scale(1); }
+      50%      { box-shadow: 0 0 50px rgba(255,0,0,1), inset 0 1px 0 rgba(255,255,255,.25); transform: scale(1.05); }
     }
 
     /* Responsive */
@@ -127,16 +122,10 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
     <p class="kicker">Kategorie • Projekte & Serien</p>
     <h1><span class="grad">Redstone Labs</span></h1>
     <p class="copy">Spannende Tutorials, epische Events & verrückte Maschinen.</p>
-    <img src="../../assets/img/categories/red.png" alt="Redstone Labs" style="max-width:260px;margin:20px auto;display:block;">
+    <img src="../../assets/img/categories/red.png" alt="Redstone Labs" style="max-width:260px;margin:20px auto;display:block;" loading="lazy">
   </header>
 
   <!-- Features -->
-  <section class="section container">
-    <div class="features">
-      <!-- hier bleiben deine 5 Feature-Artikel (Tutorials, Events, Maschinen, Community, Tech-Lab) -->
-    </div>
-
-     <!-- Features -->
   <section class="section container">
     <div class="features">
 
@@ -152,7 +141,11 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
           </ul>
         </div>
         <div class="media">
-          <video src="../../assets/video/redstone_tutorials.mp4" controls muted loop playsinline></video>
+          <video controls muted loop playsinline preload="metadata"
+                 poster="../../assets/img/covers/cover-redstone.jpg">
+            <source src="../../assets/video/redstone_tutorials.mp4" type="video/mp4" />
+            Dein Browser unterstützt das Video-Tag nicht.
+          </video>
         </div>
       </article>
 
@@ -169,7 +162,7 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
           </ul>
         </div>
         <div class="media">
-          <img src="../../assets/img/events/redstone_stage.jpg" alt="Events & Effekte">
+          <img src="../../assets/img/events/redstone_stage.jpg" alt="Events & Effekte" loading="lazy">
         </div>
       </article>
 
@@ -185,7 +178,7 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
           </ul>
         </div>
         <div class="media">
-          <img src="../../assets/img/showcase/machines_grid.jpg" alt="Verrückte Maschinen">
+          <img src="../../assets/img/showcase/machines_grid.jpg" alt="Verrückte Maschinen" loading="lazy">
         </div>
       </article>
 
@@ -201,7 +194,7 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
           </ul>
         </div>
         <div class="media">
-          <img src="../../assets/img/community/stream_wall.jpg" alt="Community & Streams">
+          <img src="../../assets/img/community/stream_wall.jpg" alt="Community & Streams" loading="lazy">
         </div>
       </article>
 
@@ -218,12 +211,11 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
           </ul>
         </div>
         <div class="media">
-          <img src="../../assets/img/lab/redstone_pc.jpg" alt="Tech-Lab & Redstone PC">
+          <img src="../../assets/img/lab/redstone_pc.jpg" alt="Tech-Lab & Redstone PC" loading="lazy">
         </div>
       </article>
 
     </div>
-
 
     <!-- Game-Style CTA -->
     <section class="game-cta">
@@ -248,20 +240,16 @@ ich habe debn webseite hochgeladen aber das video wird nicht <!DOCTYPE html>
         </a>
       </div>
 
-
-      
-
-<!-- Neuer Textblock mit Redstube -->
-<div style="margin-top:40px;">
-  <p style="font-size:1.1rem; opacity:.9; margin-bottom:18px;">
-    Oder starte deine Karriere auf <strong>Redstube</strong>, um mehr zu erfahren und Spaß zu haben.
-  </p>
-  <a class="game-btn redstube-btn" href="../redstone-labs/redstube.html" style="display:inline-block; max-width:280px; margin:0 auto;">
-    🔴 Redstube
-    <span class="sub">Jetzt starten</span>
-  </a>
-</div>
-
+      <!-- Neuer Textblock mit Redstube -->
+      <div style="margin-top:40px;">
+        <p style="font-size:1.1rem; opacity:.9; margin-bottom:18px;">
+          Oder starte deine Karriere auf <strong>Redstube</strong>, um mehr zu erfahren und Spaß zu haben.
+        </p>
+        <a class="game-btn redstube-btn" href="../redstone-labs/redstube.html" style="display:inline-block; max-width:280px; margin:0 auto;">
+          🔴 Redstube
+          <span class="sub">Jetzt starten</span>
+        </a>
+      </div>
     </section>
 
     <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
