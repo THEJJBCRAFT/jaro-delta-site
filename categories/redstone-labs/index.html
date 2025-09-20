@@ -32,6 +32,281 @@
       position: relative; overflow: hidden; border-radius: 10px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     }
+    <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redstone Labs – Jaro • Delta</title>
+  <meta name="description" content="Spannende Tutorials, epische Events & verrückte Maschinen." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="icon" href="../../assets/icons/favicon.png" type="image/png" />
+  <meta property="og:title" content="Redstone Labs – Jaro • Delta" />
+  <meta property="og:description" content="Shows, Tutorials & Events zu verrückten Maschinen." />
+  <meta property="og:type" content="article" />
+  <meta name="theme-color" content="#7c3aed" />
+
+  <style>
+    /* ===== Feature Layout (kompakter) ===== */
+    .features { display: grid; gap: 22px; margin-top: 20px; }
+    .feature {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 14px;
+      backdrop-filter: blur(6px);
+    }
+    .feature.reverse { grid-template-columns: 1fr 1.2fr; }
+    .feature .media {
+      position: relative; overflow: hidden; border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .feature .media img, .feature .media video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .feature h3 { margin: 0 0 6px; font-size: 1.2rem; }
+    .feature p { margin: 0 0 8px; line-height: 1.5; font-size: 0.95rem; opacity: .95; }
+    .bullets { display: grid; gap: 4px; margin-top: 4px; }
+    .bullets li { list-style: none; position: relative; padding-left: 18px; font-size: 0.9rem; }
+    .bullets li::before {
+      content: "◆"; position: absolute; left: 0; top: 0.1rem; font-size: .75rem; opacity: .8;
+    }
+
+    /* ===== Schwarzer Game-Section (größer) ===== */
+    .game-cta {
+      position: relative; margin-top: 50px; padding: 100px 30px;
+      border-radius: 20px; overflow: hidden; color: #fff;
+      background: radial-gradient(1200px 500px at 20% -10%, rgba(255,60,60,.25), transparent 60%),
+                  radial-gradient(1200px 500px at 80% 110%, rgba(255,0,120,.22), transparent 60%),
+                  #050507;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .game-cta::before, .game-cta::after {
+      content:""; position:absolute; inset: -20%;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 2px, transparent 2px 6px);
+      animation: scan 8s linear infinite; pointer-events:none; mix-blend-mode: overlay;
+    }
+    .game-cta::after {
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 55%);
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes scan { 0%{transform:translateX(0)} 100%{transform:translateX(10%)} }
+    @keyframes pulse { 0%,100%{opacity:.35} 50%{opacity:.65} }
+
+    .game-cta h2 { margin: 0 0 16px; font-size: 2.4rem; letter-spacing: .5px; }
+    .game-cta p.lead { margin: 0 0 36px; opacity: .95; font-size: 1.1rem; }
+
+    /* Buttons – größer & dominanter */
+    .btn-row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+    .game-btn {
+      position: relative; padding: 26px 22px; text-align:center; font-weight: 700;
+      border-radius: 14px; text-decoration: none; color: #fff; font-size: 1.2rem;
+      background: linear-gradient(180deg, rgba(255,70,70,.9), rgba(200,0,120,.9));
+      box-shadow: 0 12px 30px rgba(255,40,80,.25), inset 0 1px 0 rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.12);
+      overflow: hidden; transform: translateY(0); transition: transform .15s ease, box-shadow .2s ease;
+    }
+    .game-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255,40,80,.35), inset 0 1px 0 rgba(255,255,255,.2); }
+    .game-btn::before {
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+      transform: translateX(-120%); transition: transform .4s ease;
+    }
+    .game-btn:hover::before { transform: translateX(120%); }
+    .game-btn .sub { display:block; font-size:0.95rem; opacity:.9; font-weight:600; margin-top:6px; }
+
+    /* Extra Animation für Redstube Button */
+    .redstube-btn {
+      background: linear-gradient(180deg, rgba(255,30,30,1), rgba(180,0,0,0.9));
+      animation: pulseRed 2s infinite ease-in-out;
+      box-shadow: 0 0 25px rgba(255,0,0,0.7), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+    @keyframes pulseRed {
+      0%, 100% {
+        box-shadow: 0 0 25px rgba(255,0,0,0.7), inset 0 1px 0 rgba(255,255,255,.15);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(255,0,0,1), inset 0 1px 0 rgba(255,255,255,.25);
+        transform: scale(1.05);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .feature, .feature.reverse { grid-template-columns: 1fr; }
+      .btn-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .btn-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container inner">
+      <div class="logo"><span>JARO • DELTA</span><span class="badge">Redstone Labs</span></div>
+      <div><a class="btn" href="../../index.html#projekte">Zurück</a></div>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <p class="kicker">Kategorie • Projekte & Serien</p>
+    <h1><span class="grad">Redstone Labs</span></h1>
+    <p class="copy">Spannende Tutorials, epische Events & verrückte Maschinen.</p>
+    <img src="../../assets/img/categories/red.png" alt="Redstone Labs" style="max-width:260px;margin:20px auto;display:block;">
+  </header>
+
+  <!-- Features -->
+  <section class="section container">
+    <div class="features">
+      <!-- hier bleiben deine 5 Feature-Artikel (Tutorials, Events, Maschinen, Community, Tech-Lab) -->
+    </div>
+
+     <!-- Features -->
+  <section class="section container">
+    <div class="features">
+
+      <!-- 1) Tutorials -->
+      <article class="feature">
+        <div class="copy">
+          <h3>Tutorials: Von der Idee zur Maschine</h3>
+          <p>Schritt für Schritt vom ersten Redstone-Signal bis zur perfekt getimten Mega-Maschine. Praxisnah, klar erklärt und direkt anwendbar – damit du nicht nur zuschaust, sondern selber baust.</p>
+          <ul class="bullets">
+            <li>Grundlagen → Logik, Takte, Hopper-Magie, Observer-Tricks</li>
+            <li>Fortgeschritten → Chunk-Slicing, Latenzen, T-Flip-Flops, Timings</li>
+            <li>Pro → Lag-sichere Designs, Wartung, Skalierung, Server-Praxis</li>
+          </ul>
+        </div>
+        <div class="media">
+          <video src="../../assets/video/redstone_tutorials.mp4" controls muted loop playsinline></video>
+        </div>
+      </article>
+
+      <!-- 2) Events -->
+      <article class="feature reverse">
+        <div class="copy">
+          <h3>Große Aktionen & Events</h3>
+          <p>Bühne frei für Effekte: Feuerwerk-Sequenzen, Lichtshows, Redstone-PC-Showcases und Live-Challenges.
+            Erlebe, wie wir Maschinen an die Grenze treiben – und manchmal darüber hinaus 🔥</p>
+          <ul class="bullets">
+            <li>Event-Shows mit synchronen Effekten & Sound-Cues</li>
+            <li>Redstone-PC & Logik-Demos – Rechnen im Blockformat</li>
+            <li>Live-Runs, Speed-Builds & Community-Challenges</li>
+          </ul>
+        </div>
+        <div class="media">
+          <img src="../../assets/img/events/redstone_stage.jpg" alt="Events & Effekte">
+        </div>
+      </article>
+
+      <!-- 3) Maschinen -->
+      <article class="feature">
+        <div class="copy">
+          <h3>Verrückte Maschinen</h3>
+          <p>Automatische Farmstädte, modulare Fabriken, fliegende Transportlinien und Redstone-Kunstwerke. Hier sammeln wir die Highlights – inklusive Blaupausen & Downloads (wo möglich).</p>
+          <ul class="bullets">
+            <li>Flug-Tunnel, Item-Router, SMELT-Megabases</li>
+            <li>Kompakt-Designs vs. High-Throughput-Monster</li>
+            <li>Erklärungen, Fehlerbilder & Fix-Strategien</li>
+          </ul>
+        </div>
+        <div class="media">
+          <img src="../../assets/img/showcase/machines_grid.jpg" alt="Verrückte Maschinen">
+        </div>
+      </article>
+
+      <!-- 4) Community -->
+      <article class="feature reverse">
+        <div class="copy">
+          <h3>Community & Live</h3>
+          <p>Mitbauen, mitfiebern, mitentscheiden: In Streams und Events entsteht Redstone Labs gemeinsam. Reiche Ideen ein, vote über nächste Projekte und zeig deine Builds.</p>
+          <ul class="bullets">
+            <li>Viewer-Projekte, SMP-Kollabs, Build-Reviews</li>
+            <li>Voting für Features & nächste Maschinen</li>
+            <li>Clips, Best-Ofs & Tutorials on demand</li>
+          </ul>
+        </div>
+        <div class="media">
+          <img src="../../assets/img/community/stream_wall.jpg" alt="Community & Streams">
+        </div>
+      </article>
+
+      <!-- 5) Tech-Lab -->
+      <article class="feature">
+        <div class="copy">
+          <h3>Tech-Lab: Messen, Testen, Optimieren</h3>
+          <p>Wenn’s präzise sein muss: Tick-Messungen, Timing-Kurven, Lag-Analysen und Tools. Wir zeigen,
+            wie du Designs stabil machst – auf Servern, Realms und lokal.</p>
+          <ul class="bullets">
+            <li>Tick-Profiler, Chunk-Borders & Sim-Distance</li>
+            <li>Duplikat-Schutz, Rollback-Safe, Wartungszugänge</li>
+            <li>Benchmarks & Vergleichstabellen</li>
+          </ul>
+        </div>
+        <div class="media">
+          <img src="../../assets/img/lab/redstone_pc.jpg" alt="Tech-Lab & Redstone PC">
+        </div>
+      </article>
+
+    </div>
+
+
+    <!-- Game-Style CTA -->
+    <section class="game-cta">
+      <h2>Starte dein Redstone-Abenteuer</h2>
+      <p class="lead">Wähle deinen Modus und tauche ein – wie ein Game-Menü, nur in echt. Alles ist live, klickbar und animiert.</p>
+      <div class="btn-row">
+        <a class="game-btn" href="../tutorials-guides/">
+          Tutorials
+          <span class="sub">Step-by-Step lernen</span>
+        </a>
+        <a class="game-btn" href="../events-streams/">
+          Events
+          <span class="sub">Showtime & Live-Runs</span>
+        </a>
+        <a class="game-btn" href="../community-projekte/">
+          Community
+          <span class="sub">Mitbauen & voten</span>
+        </a>
+        <a class="game-btn" href="../behind-the-scenes/">
+          Behind The Scenes
+          <span class="sub">Setup & Workflow</span>
+        </a>
+      </div>
+
+
+      
+
+<!-- Neuer Textblock mit Redstube -->
+<div style="margin-top:40px;">
+  <p style="font-size:1.1rem; opacity:.9; margin-bottom:18px;">
+    Oder starte deine Karriere auf <strong>Redstube</strong>, um mehr zu erfahren und Spaß zu haben.
+  </p>
+  <a class="game-btn redstube-btn" href="../redstone-labs/redstube.html" style="display:inline-block; max-width:280px; margin:0 auto;">
+    🔴 Redstube
+    <span class="sub">Jetzt starten</span>
+  </a>
+</div>
+
+    </section>
+
+    <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+      <a class="btn" href="../../index.html#projekte">← Zurück zu Projekten</a>
+      <a class="btn" href="https://www.youtube.com/@jjb-djp" target="_blank" rel="noopener">Weiter zur externen Seite</a>
+    </div>
+  </section>
+
+  <script src="../../assets/js/app.js"></script>
+</body>
+</html>
     .feature .media img, .feature .media video {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
