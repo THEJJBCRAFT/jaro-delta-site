@@ -29,14 +29,20 @@
     }
     .feature.reverse { grid-template-columns: 1fr 1.2fr; }
     .feature .media {
-      position: relative; overflow: hidden; border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.25);
       background: #000;
-      /* WICHTIG: feste Höhe per Seitenverhältnis für Video/Img */
+      /* WICHTIG: feste Höhe per Seitenverhältnis, damit Video sichtbar ist */
       aspect-ratio: 16 / 9;
     }
-    .feature .media img, .feature .media video {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+    .feature .media img,
+    .feature .media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .feature h3 { margin: 0 0 6px; font-size: 1.2rem; }
     .feature p { margin: 0 0 8px; line-height: 1.5; font-size: 0.95rem; opacity: .95; }
@@ -143,6 +149,7 @@
         <div class="media">
           <video controls muted loop playsinline preload="metadata"
                  poster="../../assets/img/covers/cover-redstone.jpg">
+            <!-- WICHTIG: Unterstrich im Dateinamen -->
             <source src="../../assets/video/redstone_tutorials.mp4" type="video/mp4" />
             Dein Browser unterstützt das Video-Tag nicht.
           </video>
